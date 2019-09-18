@@ -12,6 +12,7 @@ import time
 import os
 import pytesseract
 
+
 class Mydriver:
 
     def __init__(self, noimg=True, nohead=True):
@@ -63,7 +64,6 @@ class Mydriver:
             print("Mydriver初始化失败")
             print("=" * 120)
             raise
-
 
     def login(self):
         print("正在打开二维码登陆界面,请稍后")
@@ -125,15 +125,15 @@ class Mydriver:
         element = self.driver.find_element_by_xpath('//div[@class="indentify_content"]/img')  # 找到验证码图片位置
         # print(element.location)  # 打印元素坐标
         # print(element.size)  # 打印元素大小
-        left = element.location['x'] * 2 # 获取left数值
-        top = element.location['y'] * 2 # 获取top数值
-        right = (element.location['x'] + element.size['width'])*2  # 获取right数值
-        bottom = (element.location['y'] + element.size['height'])*2  # 获取bottom数值
+        left = element.location['x'] * 2  # 获取left数值
+        top = element.location['y'] * 2  # 获取top数值
+        right = (element.location['x'] + element.size['width']) * 2  # 获取right数值
+        bottom = (element.location['y'] + element.size['height']) * 2  # 获取bottom数值
         im = Image.open('./user/' + d_name + '.png')  # 读取图片
         # print((left,top,right,bottom))
         im = im.crop((left, top, right, bottom))  # 截取验证码位置
         im.save('./user/identifyCode.png', 'png')  # 将得到的图片保存在本地
-        #time.sleep(100)
+        # time.sleep(100)
         # code = pytesseract.image_to_string(im)
         # print(code)
         '''
@@ -183,8 +183,8 @@ class Mydriver:
     def set_cookies(self, cookies):
         for cookie in cookies:
             self.driver.add_cookie({k: cookie[k] for k in cookie.keys()})
-            print('set_cookies中',{k: cookie[k] for k in cookie.keys()})
-        #print('set_cookies',self.driver.get_cookies())
+            print('set_cookies中', {k: cookie[k] for k in cookie.keys()})
+        # print('set_cookies',self.driver.get_cookies())
 
     def get_url(self, url):
         self.driver.get(url)
@@ -198,3 +198,10 @@ class Mydriver:
 
     def quit(self):
         self.driver.quit()
+
+    def web_wait(self, s_time, title):
+        WebDriverWait(self.driver, s_time).until(EC.title_is(title))
+
+    def in_driver(self):
+        driver1 = self.driver
+        return driver1
