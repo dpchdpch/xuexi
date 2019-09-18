@@ -67,6 +67,24 @@ def show_score(cookies):
     myscores.update(mydian)
     return myscores
 
+def show_scorenew(driver):
+    myscores = scorenew.get_score(driver)
+    print("当前学习总积分：" + str(myscores['总积分']))
+    print("阅读文章:{}/{},视听学习:{}/{},登陆:{}/{},文章时长:{}/{},视频时长:{}/{}".format(
+        myscores['阅读文章'], myscores['阅读文章目标'],
+        myscores['视听学习'], myscores['视听学习目标'],
+        myscores['登录'], myscores['登录目标'],
+        myscores['文章时长'], myscores['文章时长目标'],
+        myscores['视听学习时长'], myscores['视听学习时长目标']
+        ))
+    mydian = scorenew.get_diandian(driver)
+    print("当前点点通：" + str(mydian['点点通']))
+    print("有效浏览:{}/{},有效视听:{}/{}".format(
+        mydian['有效浏览'], mydian['有效浏览目标'],
+        mydian['有效视听'], mydian['有效视听目标']
+        ))
+    myscores.update(mydian)
+    return myscores
 
 def article(driver_article, a_log, myscores):
     # if each[0] < 6 or each[3] < 8:
@@ -110,7 +128,7 @@ def article(driver_article, a_log, myscores):
                         time.sleep(1)
                     print('')  # lou
                     # driver_article.go_js('window.scrollTo(0, document.body.scrollHeight)')
-                myscores = show_score(driver_article.get_cookies())
+                myscores.update(score.get_score(driver_article.get_cookies()))
                 #if each[0] >= 6:
                 # if deach[0] >= 2:
                 '''
@@ -149,7 +167,7 @@ def article(driver_article, a_log, myscores):
                     '''
                 print('')
                 # driver_article.go_js('window.scrollTo(0, document.body.scrollHeight)')
-                myscores = show_score(driver_article.get_cookies())
+                myscores.update(score.get_score(driver_article.get_cookies()))
             else:
                 print("检测到文章时长分数已满,退出学习")
                 break
@@ -205,7 +223,7 @@ def video(driver_video, v_log, myscores):
                         time.sleep(1)
                     print('') # lou
                     # driver_video.go_js('window.scrollTo(0, document.body.scrollHeight)')
-                myscores = show_score(driver_video.get_cookies())
+                myscores.update(score.get_diandian(driver_video.get_cookies()))
                 # if each[1] >= 6:
                 # if deach[1] >= 2:
                 '''
@@ -245,7 +263,7 @@ def video(driver_video, v_log, myscores):
                     '''
                 print('')
                 # driver_video.go_js('window.scrollTo(0, document.body.scrollHeight)')
-                myscores = show_score(driver_video.get_cookies())
+                myscores.update(score.get_diandian(driver_video.get_cookies()))
             else:
                 print("检测到视频时长分数已满,退出学习")
                 break
