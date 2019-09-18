@@ -10,7 +10,7 @@ def get_score(driver):
         total = total.text.splitlines()
         myscores = {'总积分': total[1]}
         each = driver1.find_elements_by_css_selector('div.my-points-card-text')
-        name = ['登陆', '阅读文章', '视听学习', '文章时长', '视听学习时长']
+        name = ['登录', '阅读文章', '视听学习', '文章时长', '视听学习时长']
         for i in range(len(name)):
             myscores.update({name[i]: int(each[i].text[0])})
         for i in range(len(name)):
