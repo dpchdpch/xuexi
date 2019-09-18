@@ -7,6 +7,7 @@ from pdlearn import user
 from pdlearn import dingding
 from pdlearn import mydriver
 from pdlearn import score
+from pdlearn import scorenew
 from pdlearn import threads
 from pdlearn import get_links
 
@@ -128,7 +129,7 @@ def article(driver_article, a_log, myscores):
                         time.sleep(1)
                     print('')  # lou
                     # driver_article.go_js('window.scrollTo(0, document.body.scrollHeight)')
-                myscores.update(score.get_score(driver_article.get_cookies()))
+                myscores.update(show_scorenew(driver_article))
                 #if each[0] >= 6:
                 # if deach[0] >= 2:
                 '''
@@ -167,7 +168,7 @@ def article(driver_article, a_log, myscores):
                     '''
                 print('')
                 # driver_article.go_js('window.scrollTo(0, document.body.scrollHeight)')
-                myscores.update(score.get_score(driver_article.get_cookies()))
+                myscores.update(show_scorenew(driver_article))
             else:
                 print("检测到文章时长分数已满,退出学习")
                 break
@@ -223,7 +224,7 @@ def video(driver_video, v_log, myscores):
                         time.sleep(1)
                     print('') # lou
                     # driver_video.go_js('window.scrollTo(0, document.body.scrollHeight)')
-                myscores.update(score.get_diandian(driver_video.get_cookies()))
+                myscores.update(show_scorenew(driver_video))
                 # if each[1] >= 6:
                 # if deach[1] >= 2:
                 '''
@@ -263,7 +264,7 @@ def video(driver_video, v_log, myscores):
                     '''
                 print('')
                 # driver_video.go_js('window.scrollTo(0, document.body.scrollHeight)')
-                myscores.update(score.get_diandian(driver_video.get_cookies()))
+                myscores.update(show_scorenew(driver_video))
             else:
                 print("检测到视频时长分数已满,退出学习")
                 break
