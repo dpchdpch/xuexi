@@ -37,7 +37,7 @@ def get_diandian(driver):
         name = ['有效浏览', '有效视听']
         for i in range(len(name)):
             a = int(each1[i].text[0])
-            if a == 0:
+            if a < 2:
                 mydian.update({name[i]:a *6 + int(each2[i].text[19])})
             else:
                 mydian.update({name[i]:(a-1) *6 + int(each2[i].text[19])})
