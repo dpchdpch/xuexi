@@ -50,7 +50,7 @@ def get_argv():
 
 def show_score(cookies):
     myscores = score.get_score(cookies)
-    print("当前学习总积分：" + str(myscores['总积分']))
+    print("当前学习总积分：{}，今日积分：{}".format(str(myscores['总积分']), str(myscores['今日积分'])))
     print("阅读文章:{}/{},视听学习:{}/{},登陆:{}/{},文章时长:{}/{},视频时长:{}/{}".format(
         myscores['阅读文章'], myscores['阅读文章目标'],
         myscores['视听学习'], myscores['视听学习目标'],
@@ -59,7 +59,7 @@ def show_score(cookies):
         myscores['视听学习时长'], myscores['视听学习时长目标']
         ))
     mydian = score.get_diandian(cookies)
-    print("当前点点通：" + str(mydian['点点通']))
+    print("当前点点通：{}，今日点点通：{}".format(str(mydian['点点通']), str(mydian['今日点点通'])))
     print("有效浏览:{}/{},有效视听:{}/{},挑战答题:{}/{}".format(
         mydian['有效浏览'], mydian['有效浏览目标'],
         mydian['有效视听'], mydian['有效视听目标'],
@@ -70,7 +70,7 @@ def show_score(cookies):
 
 def show_scorenew(driver):
     myscores = scorenew.get_score(driver)
-    print("当前学习总积分：" + str(myscores['总积分']))
+    print("当前学习总积分：{}，今日积分：{}".format(str(myscores['总积分']), str(myscores['今日积分'])))
     print("阅读文章:{}/{},视听学习:{}/{},登陆:{}/{},文章时长:{}/{},视频时长:{}/{}".format(
         myscores['阅读文章'], myscores['阅读文章目标'],
         myscores['视听学习'], myscores['视听学习目标'],
@@ -79,7 +79,7 @@ def show_scorenew(driver):
         myscores['视听学习时长'], myscores['视听学习时长目标']
         ))
     mydian = scorenew.get_diandian(driver)
-    print("当前点点通：" + str(mydian['点点通']))
+    print("当前点点通：{}，今日点点通：{}".format(str(mydian['点点通']), str(mydian['今日点点通'])))
     print("有效浏览:{}/{},有效视听:{}/{}".format(
         mydian['有效浏览'], mydian['有效浏览目标'],
         mydian['有效视听'], mydian['有效视听目标']
