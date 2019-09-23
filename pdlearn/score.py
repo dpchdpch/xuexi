@@ -14,16 +14,16 @@ def get_score(cookies):
         each = requests.get("https://pc-api.xuexi.cn/open/api/score/today/queryrate", cookies=jar).content.decode(
             "utf8")
         # 用户ID
-        each = json.loads(each, encoding="utf8")["data"]
-        myscores.update({i: each[i] for i in ['userId', 'inBlackList', 'blackListTip']})
+        others = json.loads(each, encoding="utf8")["data"]
+        myscores.update({i: others[i] for i in ['userId', 'inBlackList', 'blackListTip']})
 
         # each = json.loads(each, encoding="utf8")["data"]["dayScoreDtos"]
-        each = each['dayScoreDtos']
-        '''
+        each = others['dayScoreDtos']
+        todayscore = 0
         for i in each:
-            if i["ruleId"] in [1, 2, 9, 1002, 1003]:
-                myscores.update({i['name']: int(i["currentScore"])})
-        '''
+            todayscore += int(i["currentScore"])
+        myscores.update({'今日积分': todayscore})
+
         myscores.update({i['name']: int(i["currentScore"]) for i in each})  # if i["ruleId"] in [1, 2, 9, 1002, 1003]})
         myscores.update({i['name']+'目标': int(i["dayMaxScore"]) for i in each})
         # each = [int(i["currentScore"]) for i in each if i["ruleId"] in [1, 2, 9, 1002, 1003]]
@@ -44,12 +44,16 @@ def get_diandian(cookies):
         mydian = {'点点通': total}
         each = requests.get("https://pc-proxy-api.xuexi.cn/api/point/today/queryrate", cookies=jar).content.decode(
             "utf8")
-        each = json.loads(each, encoding="utf8")["data"]["taskProgressDtos"]
+
+        todaydian = int(json.loads(each, encoding='utf8')['data']['dayEarnPoint'])
+        mydian.update({'今日点点通': todaydian})
+
+        others = json.loads(each, encoding="utf8")["data"]["taskProgressDtos"]
         # each = [int(i['completedCount']) for i in each]
         # j = 6 # 每几题算一级
         mydian.update({i['taskName']: int(i['completedCount']) * int(i['target'])+int(i['progress']) % int(i['target'])
-                       for i in each})
-        mydian.update({i['taskName']+'目标': int(i['maxCompletedCount']) * int(i['target']) for i in each})
+                       for i in others})
+        mydian.update({i['taskName']+'目标': int(i['maxCompletedCount']) * int(i['target']) for i in others})
         # each = [int(i[j]) for j in ['completedCount','progress'] for i in each] # if i["ruleId"] in [1, 2, 9, 1002, 1003]]
         # print('diandian',each)
         # print(mydian)

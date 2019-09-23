@@ -8,7 +8,7 @@ def get_score(driver):
         driver1 = driver.in_driver()
         total = driver1.find_element_by_css_selector('div.my-points-block')
         total = total.text.splitlines()
-        myscores = {'总积分': total[1]}
+        myscores = {'总积分': int(total[1]), '今日积分': int(total[3])}
         each = driver1.find_elements_by_css_selector('div.my-points-card-text')
         name = ['登录', '阅读文章', '视听学习', '文章时长', '视听学习时长']
         for i in range(len(name)):
@@ -31,7 +31,7 @@ def get_diandian(driver):
         driver2 = driver.in_driver()
         total = driver2.find_element_by_css_selector('div.my-points-block')
         total = total.text.splitlines()
-        mydian = {'点点通': total[1]}
+        mydian = {'点点通': int(total[1]),'今日点点通': int(total[4])}
         each1 = driver2.find_elements_by_css_selector('div.my-points-card-text')
         each2 = driver2.find_elements_by_css_selector('div.my-points-card-subtitle')
         name = ['有效浏览', '有效视听']
