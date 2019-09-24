@@ -1,7 +1,13 @@
 import time
+from pdlearn import mydriver
 
 def get_score(driver):
     try:
+        '''
+        driver = mydriver.Mydriver(nohead=True)
+        driver.get_url('https://www.xuexi.cn')
+        driver.set_cookies(cookies)
+        '''
         driver.get_url('https://pc.xuexi.cn/points/my-points.html')
         driver.web_wait(270, u"我的积分")
         # time.sleep(10)
@@ -24,6 +30,11 @@ def get_score(driver):
         raise
 def get_diandian(driver):
     try:
+        '''
+        driver = mydriver.Mydriver(nohead=True)
+        driver.get_url('https://www.xuexi.cn')
+        driver.set_cookies(cookies)
+        '''
         driver.get_url('https://pc.xuexi.cn/points/ptp.html')
         driver.web_wait(270, u"我的点点通")
         # driver.find_element_by_css_selector('button.ant-btn.ant-btn-primary').click()
