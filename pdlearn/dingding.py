@@ -20,14 +20,14 @@ def dd_login_status(uname, has_dd=False):
             print("读取用户信息成功")
         else:
             dname, pwd = get_dd()
-        driver_login = mydriver.Mydriver(noimg=False,nohead=False) #添加nohead=True
+        driver_login = mydriver.Mydriver(noimg=False, nohead=False) #添加nohead=True
         login_status = driver_login.dd_login(dname, pwd)
         time.sleep(15)
         if login_status:
             save_dingding("./user/{}/dingding".format(uname), dname, pwd)
             cookies = driver_login.get_cookies()
             break
-    return driver_login,cookies
+    return cookies
 
 
 def save_dingding(user_path, dname, pwd):
