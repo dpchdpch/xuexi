@@ -182,8 +182,10 @@ class Mydriver:
 
     def set_cookies(self, cookies):
         for cookie in cookies:
+            if isinstance(cookie.get('expiry'), float):
+                cookie['expiry'] = int(cookie['expiry'])
             self.driver.add_cookie({k: cookie[k] for k in cookie.keys()})
-            print('set_cookies中', {k: cookie[k] for k in cookie.keys()})
+            # print('set_cookies中', {k: cookie[k] for k in cookie.keys()})
         # print('set_cookies',self.driver.get_cookies())
 
     def get_url(self, url):
