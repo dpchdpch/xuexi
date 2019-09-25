@@ -26,9 +26,9 @@ def dd_login_status(uname, has_dd=False):
         if login_status:
             save_dingding("./user/{}/dingding".format(uname), dname, pwd)
             cookies = driver_login.get_cookies()
-            driver_login.quit()
+            # driver_login.quit()
             break
-    return cookies
+    return driver_login, cookies
 
 
 def save_dingding(user_path, dname, pwd):

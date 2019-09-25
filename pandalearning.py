@@ -14,19 +14,19 @@ from pdlearn import get_links
 
 def user_flag(dd_status, uname):
     if dd_status:
-        cookies = dingding.dd_login_status(uname, has_dd=True)
+        driver_login, cookies = dingding.dd_login_status(uname, has_dd=True)
     else:
         if (input("是否保存钉钉帐户密码，保存后可后免登陆学习(Y/N) ")) not in ["y", "Y"]:
             driver_login = mydriver.Mydriver(nohead=False)
             cookies = driver_login.login()
-            driver_login.quit()
+            # driver_login.quit()
         else:
-            cookies = dingding.dd_login_status(uname)
+            driver_login, cookies = dingding.dd_login_status(uname)
     '''
     a_log = user.get_a_log(uname)
     v_log = user.get_v_log(uname)
     '''
-    return cookies
+    return driver_login, cookies
 
 
 def get_argv():
@@ -287,7 +287,7 @@ if __name__ == '__main__':
     #info_shread.start()
     #  1 创建用户标记，区分多个用户历史纪录
     dd_status, uname = user.get_user()
-    cookies = user_flag(dd_status, uname)
+    driver_login, cookies = user_flag(dd_status, uname)
     myscores = show_score(cookies)
     print(myscores['inBlackList'])
     # 检查userId目录
@@ -303,9 +303,7 @@ if __name__ == '__main__':
     #driver_article.set_cookies(cookies)
     print('3',driver_article.get_cookies())
     '''
-    driver_login = mydriver.Mydriver(noimg=True, nohead=True)
-    driver_login.get_url('https://www.xuexi.cn/notFound.html')
-    driver_login.set_cookies(cookies)
+
     print('开始今天的文章学习')
     article(driver_login, a_log, myscores)
     print('开始今天的视频学习')
