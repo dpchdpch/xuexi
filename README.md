@@ -1,4 +1,6 @@
-修改自[Alivon](https://github.com/Alivon)/**Panda-Learning**自动学习，为本人python编程习作，不承担任何法律后果。
+### 关于自动学习
+
+修改自[Alivon](https://github.com/Alivon)/**[Panda-Learning](https://github.com/Alivon/Panda-Learning)**自动学习，为本人python编程习作，不承担任何法律后果。
 
 ### 如何自动学习
 
